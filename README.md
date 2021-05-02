@@ -14,10 +14,11 @@ Accept: application/json
 
 None
 
-# Return Schema
+# Response
 
+```json Schema
 {
-{
+   {
     "roundUpAccount": {
         "accountUid": String,
         "accountType": String,
@@ -41,9 +42,8 @@ None
         ]
     }
 }
-
-
-# Return Example
+```
+```json Example
 
 {
     "roundUpAccount": {
@@ -373,3 +373,5 @@ None
         ]
     }
 }
+
+```
