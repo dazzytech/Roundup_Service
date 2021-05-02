@@ -1,21 +1,24 @@
 # Roundup_Service
 Create a roundup Service created by Daryl Boam
 
-# Endpoint
+## Endpoint
 GET: http://localhost:8080/round_up_account
 
-# Headers
+## Headers
 
-Authorization: YOUR CUSTOMER TOKEN 
+Authorization: Bearer {YOUR CUSTOMER TOKEN} 
 
 Accept: application/json
 
-# Body
+## Body
 
 None
 
-# Response
-## Schema
+## Curl
+curl --get http://localhost:8080/round_up_account -H "Accept: application/json" -H "Authorization: Bearer {YOUR CUSTOMER TOKEN}"
+
+## Response
+### Schema
 ```json 
 {
    {
@@ -43,7 +46,7 @@ None
     }
 }
 ```
-## Example
+### Example
 ```json
 {
     "roundUpAccount": {
