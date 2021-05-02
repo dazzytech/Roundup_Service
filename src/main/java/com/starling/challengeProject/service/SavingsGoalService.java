@@ -7,9 +7,7 @@ import com.starling.challengeProject.model.savingsGoal.SavingsGoalDeposit;
 import com.starling.challengeProject.model.savingsGoal.SavingsGoalDepositResponse;
 import com.starling.challengeProject.model.savingsGoal.SavingsGoalRequest;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -61,17 +59,13 @@ public class SavingsGoalService {
                 (customerToken, url, savingsGoalRequestBody, ParameterizedTypeReference.forType(SavingsGoal.class));
 
         if (response.isPresent()) {
-            if(response.get().getSuccessful()) {
-                SavingsGoal savingsGoal = response.get();
-                savingsGoal.setTransferUid(depositIntoSavingsGoal
-                        (customerToken, accountUid, savingsGoal.getSavingsGoalUid(), roundUpTotal));
-                return savingsGoal;
-            } else {
-                throw new RuntimeException("Error when making savings goal");
-            }
+            SavingsGoal savingsGoal = response.get();
+            savingsGoal.setTransferUid(depositIntoSavingsGoal
+                    (customerToken, accountUid, savingsGoal.getSavingsGoalUid(), roundUpTotal));
+            return savingsGoal;
         }
         else {
-            throw new RuntimeException("Error when making savings goal");
+            throw new RuntimeException("SavingsGoalService: Error when making savings goal");
         }
     }
 
@@ -103,10 +97,10 @@ public class SavingsGoalService {
             if(response.get().getIsSuccess()) {
                 return response.get().getTransferUid();
             } else {
-                throw new RuntimeException("Error when making savings goal");
+                throw new RuntimeException("SavingsGoalService: Error when making deposit savings goal");
             }
         } else {
-            throw new RuntimeException("Error when making savings goal");
+            throw new RuntimeException("SavingsGoalService: Error when making deposit savings goal");
         }
     }
 }

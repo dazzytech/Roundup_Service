@@ -1,9 +1,5 @@
 package com.starling.challengeProject.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.ParameterizedTypeReference;
@@ -21,8 +17,6 @@ public class HttpService<T> {
 
     private final RestTemplate restTemplate;
 
-    ObjectMapper mapper = new ObjectMapper();
-
     @Value("${starling.sandbox.baseUrl}")
     private String SANDBOX_BASE_URL;
 
@@ -31,17 +25,12 @@ public class HttpService<T> {
     }
 
     public Optional<T> get(String customerToken, String url, ParameterizedTypeReference<T> type ) {
-
         HttpEntity request = new HttpEntity(getHeader(customerToken));
-
         return httpCall(url, request, type, HttpMethod.GET);
     }
 
     public Optional<T> put(String customerToken, String url, String body, ParameterizedTypeReference<T> type ) {
-
         HttpEntity<String> request = new HttpEntity<String>(body, getHeader(customerToken));
-
-
         return httpCall(url, request, type, HttpMethod.PUT);
     }
 
@@ -60,9 +49,10 @@ public class HttpService<T> {
 
         if(responseEntity.getStatusCode() == HttpStatus.OK) {
             return of(responseEntity.getBody());
+        } else {
+            throw new RuntimeException("HttpService: error making call" +
+                    responseEntity.getStatusCode() + " " + responseEntity.getBody());
         }
-
-        return Optional.empty();
     }
 
 }

@@ -8,9 +8,6 @@ public class SavingsGoal implements Serializable {
     @JsonProperty("savingsGoalUid")
     private String savingsGoalUid;
 
-    @JsonProperty("success")
-    private Boolean isSuccessful;
-
     private String transferUid;
 
     public String getSavingsGoalUid() {
@@ -19,14 +16,6 @@ public class SavingsGoal implements Serializable {
 
     public void setSavingsGoalUid(String savingsGoalUid) {
         this.savingsGoalUid = savingsGoalUid;
-    }
-
-    public Boolean getSuccessful() {
-        return isSuccessful;
-    }
-
-    public void setSuccessful(Boolean successful) {
-        isSuccessful = successful;
     }
 
     public String getTransferUid() {
