@@ -15,8 +15,8 @@ Accept: application/json
 None
 
 # Response
-
-```json Schema
+## Schema
+```json 
 {
    {
     "roundUpAccount": {
@@ -43,7 +43,8 @@ None
     }
 }
 ```
-```json Example
+## Example
+```json
 {
     "roundUpAccount": {
         "accountUid": "46ed3893-c20f-49ce-83d3-5759b0de25da",
