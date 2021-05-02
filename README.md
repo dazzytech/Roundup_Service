@@ -44,7 +44,6 @@ None
 }
 ```
 ```json Example
-
 {
     "roundUpAccount": {
         "accountUid": "46ed3893-c20f-49ce-83d3-5759b0de25da",
@@ -373,5 +372,4 @@ None
         ]
     }
 }
-
 ```
